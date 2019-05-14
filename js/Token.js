@@ -4,4 +4,6 @@ class Token {
     this.id = `token-${index}-${owner.id}`;
     this.dropped = false; 
   }
+
+
 }
