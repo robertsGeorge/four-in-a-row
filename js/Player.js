@@ -34,6 +34,6 @@ class Player {
    * @returns {Object} First token object in the array of unused tokens.
    */
   get activeToken(){
-    return this.unusedTokens[0];
+    return this.unusedTokens[0]; // using one getter within another
   }
 }

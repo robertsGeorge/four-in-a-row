@@ -15,10 +15,12 @@ class Game {
   }
 
   /**
-   * Gets game ready for play
+   * Puts the game in a ready state
    */
   startGame(){
-
+    this.board.drawHTMLBoard();
+    this.activePlayer.activeToken.drawHTMLToken();
+    this.ready = true;
   }
 
   /**
@@ -27,6 +29,6 @@ class Game {
    */
   get activePlayer(){
     // use .find() because it returns a single value, not an array
-    return this.players.find(player => player.active === true);
+    return this.players.find(player => player.active);
   }
 }
