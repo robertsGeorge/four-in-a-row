@@ -13,4 +13,11 @@ class Game {
                       new Player('Player_2', 2, '#e59a13', false)];
     return players;
   }
+
+  /**
+   * Gets game ready for play
+   */
+  startGame(){
+
+  }
 }
