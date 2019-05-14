@@ -20,4 +20,13 @@ class Game {
   startGame(){
 
   }
+
+  /**
+   * Returns active player.
+   * @returns {Object}  player - The active player.
+   */
+  get activePlayer(){
+    // use .find() because it returns a single value, not an array
+    return this.players.find(player => player.active === true);
+  }
 }
