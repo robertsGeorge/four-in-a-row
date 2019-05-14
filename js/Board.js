@@ -29,8 +29,14 @@ class Board {
   }
 
   drawHTMLBoard(){
-    this.spaces.forEach(column => {
+    for (let column of this.spaces) {
+      for (let space of column) {
+        space.drawSVGSpace();
+      }
+    }
+    
+    /* this.spaces.forEach(column => {
       column.forEach(space => space.drawSVGSpace());
-    });
+    }); */
   }
 }

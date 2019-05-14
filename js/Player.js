@@ -20,4 +20,15 @@ class Player {
     }
     return tokens;
   }
+
+  /** 
+  * @returns {array}  an array of unused tokens
+  */
+  get unusedTokens(){
+    return this.tokens.filter(token => token.dropped === false);
+  }
+
+  get activeToken(){
+    return this.unusedTokens[0];
+  }
 }
