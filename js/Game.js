@@ -31,4 +31,22 @@ class Game {
     // use .find() because it returns a single value, not an array
     return this.players.find(player => player.active);
   }
+
+  /**
+   * Branches code, depending on what key player presses
+   * @param {object} event - keydown event object
+   */
+  handleKeydown(event){
+    if (this.ready) {
+      if (event.key === 'ArrowLeft') {
+        this.activePlayer.activeToken.moveLeft();
+      } else if (event.key === 'ArrowRight') {
+        this.activePlayer.activeToken.moveRight(this.board.columns);
+      } else if (event.key === 'ArrowDown') {
+        // token should be dropped
+      }
+    }
+  }
+
+
 }

@@ -2,7 +2,8 @@ class Token {
   constructor(index, owner) {
     this.owner = owner;
     this.id = `token-${index}-${owner.id}`;
-    this.dropped = false; 
+    this.dropped = false;
+    this.columnLocation = 0; 
   }
 
   drawHTMLToken(){
@@ -15,5 +16,34 @@ class Token {
 
   get htmlToken(){
     return document.getElementById(this.id);
+  }
+
+  /**
+   * Gets left offset of html element.
+   * @returns {number}  Left offset of token object's htmlToken
+   */
+  get offsetLeft(){
+    return this.htmlToken.offsetLeft;
+  }
+
+  /**
+   * Moves html token one column to left.
+   */
+  moveLeft(){
+    if (this.columnLocation > 0) {
+      this.htmlToken.style.left = this.offsetLeft - 76;
+      this.columnLocation -= 1;
+    }
+  }
+
+  /**
+   * Moves html token one column to right.
+   * @param {number}    columns - number of columns in the game board
+   */
+  moveRight(columns){
+    if (this.columnLocation < columns - 1) {
+      this.htmlToken.style.left = this.offsetLeft + 76;
+      this.columnLocation += 1;
+    }
   }
 }
