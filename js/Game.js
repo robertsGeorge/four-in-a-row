@@ -4,6 +4,8 @@ class Game {
     this.players = this.createPlayers();
     this.ready = false;
   }
+
+
   /**
    * Creates two player objects
    * @returns {Array}   An array of two Player objects
@@ -13,6 +15,17 @@ class Game {
                       new Player('Player_2', 2, '#e59a13', false)];
     return players;
   }
+  
+
+  /**
+   * Returns active player.
+   * @returns {Object}  player - The active player.
+   */
+  get activePlayer(){
+    // use .find() because it returns a single value, not an array
+    return this.players.find(player => player.active);
+  }
+
 
   /**
    * Puts the game in a ready state
@@ -24,13 +37,29 @@ class Game {
   }
 
   /**
-   * Returns active player.
-   * @returns {Object}  player - The active player.
+   * Finds Space object to drop Token into, drops Token
    */
-  get activePlayer(){
-    // use .find() because it returns a single value, not an array
-    return this.players.find(player => player.active);
+  playToken(){
+    const spaces = this.board.spaces;
+    const activeToken = this.activePlayer.activeToken;
+    // use columnLocation property to return an index value, to identify the relevant column array in spaces 2D array
+    const targetColumn = spaces[activeToken.columnLocation];
+    let targetSpace = null;
+    
+    // loop through targetColumn array checking for a space that haven't been assigned a token
+    // if one is found, assign it to targetSpace
+    for (let space of targetColumn) {
+      if (space.token === null) {
+        targetSpace = space;
+      }
+    }
+    // if there is a targetSpace (i.e. targetColumn is not already full):
+    if (targetSpace !== null) {
+      this.ready = false;
+      activeToken.drop(targetSpace);
+    } 
   }
+
 
   /**
    * Branches code, depending on what key player presses
@@ -43,11 +72,7 @@ class Game {
       } else if (event.key === 'ArrowRight') {
         this.activePlayer.activeToken.moveRight(this.board.columns);
       } else if (event.key === 'ArrowDown') {
-        /* this.activePlayer.activeToken.drop(
-          // identify target space to pass into drop() method
-          this.board.spaces[this.activePlayer.activeToken.columnLocation][.lastIndexOf()].find(space => space.token =),
-          //reset()
-        ); */
+        game.playToken();
       }
     }
   }
