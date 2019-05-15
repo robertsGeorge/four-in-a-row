@@ -46,4 +46,18 @@ class Token {
       this.columnLocation += 1;
     }
   }
+
+  /**
+   * Drops html token into targeted board space.
+   * @param {Object}  target - Targeted space for dropped token.
+   * @param {Function} reset - The reset function to call after the drop animation has completed.
+   */
+  drop(target, reset){
+    this.dropped = true;
+
+    $(this.htmlToken).animate(
+      {top: (target.y * target.diameter)}, // plain object containing css prop and value to animate
+      750, 'easeOutBounce', reset
+    );
+  }
 }

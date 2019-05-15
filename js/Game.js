@@ -43,7 +43,11 @@ class Game {
       } else if (event.key === 'ArrowRight') {
         this.activePlayer.activeToken.moveRight(this.board.columns);
       } else if (event.key === 'ArrowDown') {
-        // token should be dropped
+        /* this.activePlayer.activeToken.drop(
+          // identify target space to pass into drop() method
+          this.board.spaces[this.activePlayer.activeToken.columnLocation][.lastIndexOf()].find(space => space.token =),
+          //reset()
+        ); */
       }
     }
   }
