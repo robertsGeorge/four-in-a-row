@@ -81,7 +81,69 @@ class Game {
    * checks for win. four tokens owned by same player in a horizontal, vertical or diagonal row.
    * 
    */
-  checkForWin(){
+  checkForWin(spaces, targetSpace, activeToken, activePlayer){
     
+    // flatten 2D array spaces into a 1D array of all spaces:
+    const arrayOfAllSpaces = spaces.reduce((accArray, column) => {
+      return [...accArray, ...column];
+    }, []);
+
+    // filter 1D array of spaces by activePlayer ownership:
+    const spacesOwnedByActivePlayer = arrayOfAllSpaces.filter(space => space.owner === activePlayer);
+
+    // use space x and y properties to check for victory streaks in each possible direction:
+    // check for vertical down victory:
+    const verticalDown = [];
+    let incrementor = 1;
+    for (space of spacesOwnedByActivePlayer) {
+      if (space.y === activeSpace.y + incrementor) {
+        verticalDown.push(space);
+      }
+      incrementor++;
+    }
+    //check if direction array contains at least 4 in a row:
+    if (verticalDown.length >= 4) {
+      // call gameover method
+    }
+
+    // check for horizontal left victory:
+    incrementor = 1; // reset incrementor
+
+
+
+
+
+    /* const verticaldown = [];
+    const horizLeft = [];
+    const horizRight = [];
+    const diagUpLeft = [];
+    const diagUpRight = [];
+    const diagDownLeft = [];
+    const diagDownRight = [];
+
+
+    for (let column of spaces) {
+      for (let space of column) {
+
+      }
+    } */
+    // check vertical (would have to be going downwards from target space, so Y + 1)
+   /*  if ( &&  &&  && ) */
+      // activeToken.columnLocation
+      // const targetColumn = spaces[activeToken.columnLocation]
+      // targetColumn.indexOf(targetSpace)
+    // space.owner (call the get owner method on Space)
+
+    // each space has an x and y property that corresponds to its position in the grid
+    // from each targetSpace, need to identify the rows of four spaces in each direction, and turn each into an array
+        //vertical array
+        /* const vertArray = targetColumn.filter(space => space.y >= targetSpace.y);
+        const horiArray = [];
+        spaces.forEach(column => {
+          const spaceOnSameRow = column.filter(space => space.y === targetSpace.y);
+          horiArray.push(spaceOnSameRow[0]);
+        }); */
+    // then loop over each array checking to see if every owner === targetSpace.owner
+    // 
   }
 }
