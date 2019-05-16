@@ -36,4 +36,12 @@ class Player {
   get activeToken(){
     return this.unusedTokens[0]; // using one getter within another
   }
+
+  /**
+   * Check if a player has any undropped tokens left
+   * @return {Boolean}
+   */
+  checkTokens(){
+    return Boolean(this.unusedTokens[0]);
+  }
 }

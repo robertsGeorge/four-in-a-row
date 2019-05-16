@@ -164,7 +164,7 @@ class Game {
     } else {
       this.switchPlayers();
     }
-    if (this.activePlayer.activeToken !== null) { // would it be null or undefined?
+    if (this.activePlayer.checkTokens()) { // would it be null or undefined?
       this.activePlayer.activeToken.drawHTMLToken();
       this.ready = true;
     } else {
