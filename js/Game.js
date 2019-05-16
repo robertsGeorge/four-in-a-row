@@ -26,6 +26,18 @@ class Game {
     return this.players.find(player => player.active);
   }
 
+  /**
+   * Switches active player.
+   */
+  switchPlayers(){
+    this.players.forEach(player => player.active = !player.active);
+    /*
+    Tutor's solution:
+    for (let player of this.players) {
+      player.active = (player.active === true) ? false : true;
+    }
+    */
+  }
 
   /**
    * Puts the game in a ready state
@@ -135,36 +147,49 @@ class Game {
     }
 
     return win;
-}
-
-/*   checkForWin(spaces, targetSpace, activeToken, activePlayer){
-    
-    // flatten 2D array spaces into a 1D array of all spaces:
-    const arrayOfAllSpaces = spaces.reduce((accArray, column) => {
-      return [...accArray, ...column];
-    }, []);
-
-    // filter 1D array of spaces by activePlayer ownership:
-    const spacesOwnedByActivePlayer = arrayOfAllSpaces.filter(space => space.owner === activePlayer);
-
-    // use space x and y properties to check for victory streaks in each possible direction:
-    // check for vertical down victory:
-    const verticalDown = [];
-    let incrementor = 1;
-    for (space of spacesOwnedByActivePlayer) {
-      if (space.y === activeSpace.y + incrementor) {
-        verticalDown.push(space);
-      }
-      incrementor++;
-    }
-    //check if direction array contains at least 4 in a row:
-    if (verticalDown.length >= 4) {
-      // call gameover method
-    }
-
-    // check for horizontal left victory:
-    incrementor = 1; // reset incrementor
-
   }
- */
+
+  /**
+   * Displays game over message.
+   * @param {string} message - Game over message.
+   */
+  gameOver(message){
+    const messageHolder = document.getElementById('game-over');
+    messageHolder.style.display = 'block';
+    messageHolder.textContent = message;
+  }
+
+  // /**
+  //  * Checks if there is a winner on the board after each token drop.
+  //  * @param {array} spaces the 2D array of all spaces @ this.board.spaces
+  //  * @param {Object} activePlayer the active player
+  //  */
+  // checkForWin(spaces, activePlayer){
+    
+  //   // flatten 2D array spaces into a 1D array of all spaces:
+  //   const arrayOfAllSpaces = spaces.reduce((accArray, column) => {
+  //     return [...accArray, ...column];
+  //   }, []);
+
+  //   // filter 1D array of spaces by activePlayer ownership:
+  //   const spacesOwnedByActivePlayer = arrayOfAllSpaces.filter(space => space.owner === activePlayer);
+
+  //   // use space x and y properties to check for victory streaks in each possible direction:
+  //   // check for vertical down victory:
+  //   const verticalDown = [];
+  //   let incrementor = 1;
+  //   for (space of spacesOwnedByActivePlayer) {
+  //     if (space.y === activeSpace.y + incrementor) {
+  //       verticalDown.push(space);
+  //     }
+  //     incrementor++;
+  //   }
+  //   //check if direction array contains at least 4 in a row:
+  //   if (verticalDown.length >= 4) {
+  //     // call gameover method / winner alert
+  //   }
+
+  //   // repeat above code (from 'const verticalDown = []' onwards) for the different directions.
+  // }
+
 }
