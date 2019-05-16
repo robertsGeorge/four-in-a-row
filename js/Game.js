@@ -161,16 +161,20 @@ class Game {
    */
   updateGameState(token, target){
     target.mark(token);
+
     if (this.checkForWin(target)) {
-      this.gameOver(`${this.activePlayer} is the winner! Game over!`);
+      this.gameOver(`${target.owner.name} wins!`);
+
     } else {
       this.switchPlayers();
-    }
-    if (this.activePlayer.checkTokens()) { // would it be null or undefined?
-      this.activePlayer.activeToken.drawHTMLToken();
-      this.ready = true;
-    } else {
-      this.gameOver(`You have no tokens left. Game over!`);
+
+      if (this.activePlayer.checkTokens()) { 
+        this.activePlayer.activeToken.drawHTMLToken();
+        this.ready = true;
+        
+      } else {
+        this.gameOver(`You have no tokens left. Game over!`);
+      }
     }
   }
 

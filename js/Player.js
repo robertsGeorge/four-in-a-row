@@ -42,6 +42,7 @@ class Player {
    * @return {Boolean}
    */
   checkTokens(){
-    return Boolean(this.unusedTokens[0]);
+    // return Boolean(this.unusedTokens[0]);
+    return (this.unusedTokens.length === 0) ? false : true;
   }
 }
