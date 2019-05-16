@@ -68,7 +68,9 @@ class Game {
     // if there is a targetSpace (i.e. targetColumn is not already full):
     if (targetSpace !== null) {
       this.ready = false;
-      activeToken.drop(targetSpace);
+      activeToken.drop(targetSpace, function(){
+        // callbback function code here
+      });
     } 
   }
 
@@ -91,7 +93,7 @@ class Game {
 
   /**
    * Checks if there is a winner on the board after each token drop.
-   * @param   {Object}    Targeted space for dropped token.
+   * @param   {Object}    target - targeted space for dropped token.
   * @returns  {boolean}   Boolean value indicating whether the game has been won (true) or not (false)
    */
   checkForWin(target){
@@ -148,6 +150,28 @@ class Game {
 
     return win;
   }
+
+
+  /**
+   * Updates game state after token is dropped
+   * @param {Object} token  -  The token that's being dropped.
+   * @param {Object} target -  Targeted space for dropped token. 
+   */
+  updateGameState(token, target){
+    target.mark(token);
+    if (this.checkForWin(target)) {
+      this.gameOver(`${this.activePlayer} is the winner! Game over!`);
+    } else {
+      this.switchPlayers();
+    }
+    if (this.activePlayer.activeToken !== null) { // would it be null or undefined?
+      this.activePlayer.activeToken.drawHTMLToken();
+      this.ready = true;
+    } else {
+      this.gameOver(`You have no tokens left. Game over!`);
+    }
+  }
+
 
   /**
    * Displays game over message.
