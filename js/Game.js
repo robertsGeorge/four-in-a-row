@@ -99,6 +99,8 @@ class Game {
   * @returns  {boolean}   Boolean value indicating whether the game has been won (true) or not (false)
    */
   checkForWin(target){
+    /* ======= CODE FOR THIS METHOD PROVIDED BY TREEHOUSE TUTOR; 
+    - MY ATTEMPTED VERSION IS COMMENTED OUT BELOW ========== */
     const owner = target.token.owner;
     let win = false;
 
@@ -151,45 +153,8 @@ class Game {
     }
 
     return win;
-  }
 
-
-  /**
-   * Updates game state after token is dropped
-   * @param {Object} token  -  The token that's being dropped.
-   * @param {Object} target -  Targeted space for dropped token. 
-   */
-  updateGameState(token, target){
-    target.mark(token);
-
-    if (this.checkForWin(target)) {
-      this.gameOver(`${target.owner.name} wins!`);
-
-    } else {
-      this.switchPlayers();
-
-      if (this.activePlayer.checkTokens()) { 
-        this.activePlayer.activeToken.drawHTMLToken();
-        this.ready = true;
-        
-      } else {
-        this.gameOver(`You have no tokens left. Game over!`);
-      }
-    }
-  }
-
-
-  /**
-   * Displays game over message.
-   * @param {string} message - Game over message.
-   */
-  gameOver(message){
-    const messageHolder = document.getElementById('game-over');
-    messageHolder.style.display = 'block';
-    messageHolder.textContent = message;
-  }
-
-  // /**
+    // /** ====== MY ATTEMPT AT CheckForWin() method ================
   //  * Checks if there is a winner on the board after each token drop.
   //  * @param {array} spaces the 2D array of all spaces @ this.board.spaces
   //  * @param {Object} activePlayer the active player
@@ -221,5 +186,43 @@ class Game {
 
   //   // repeat above code (from 'const verticalDown = []' onwards) for the different directions.
   // }
+
+  }
+
+
+  /**
+   * Updates game state after token is dropped
+   * @param {Object} token  -  The token that's being dropped.
+   * @param {Object} target -  Targeted space for dropped token. 
+   */
+  updateGameState(token, target){
+    target.mark(token);
+
+    if (this.checkForWin(target)) {
+      this.gameOver(`${target.owner.name} wins!`);
+
+    } else {
+      this.switchPlayers();
+
+      if (this.activePlayer.checkTokens()) { 
+        this.activePlayer.activeToken.drawHTMLToken();
+        this.ready = true;
+
+      } else {
+        this.gameOver(`You have no tokens left. Game over!`);
+      }
+    }
+  }
+
+
+  /**
+   * Displays game over message.
+   * @param {string} message - Game over message.
+   */
+  gameOver(message){
+    const messageHolder = document.getElementById('game-over');
+    messageHolder.style.display = 'block';
+    messageHolder.textContent = message;
+  }
 
 }
