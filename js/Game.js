@@ -78,10 +78,66 @@ class Game {
   }
 
   /**
-   * checks for win. four tokens owned by same player in a horizontal, vertical or diagonal row.
-   * 
+   * Checks if there is a winner on the board after each token drop.
+   * @param   {Object}    Targeted space for dropped token.
+  * @returns  {boolean}   Boolean value indicating whether the game has been won (true) or not (false)
    */
-  checkForWin(spaces, targetSpace, activeToken, activePlayer){
+  checkForWin(target){
+    const owner = target.token.owner;
+    let win = false;
+
+    // vertical
+    for (let x = 0; x < this.board.columns; x++ ){
+        for (let y = 0; y < this.board.rows - 3; y++){
+            if (this.board.spaces[x][y].owner === owner && 
+                this.board.spaces[x][y+1].owner === owner && 
+                this.board.spaces[x][y+2].owner === owner && 
+                this.board.spaces[x][y+3].owner === owner) {
+                    win = true;
+            }           
+        }
+    }
+
+    // horizontal
+    for (let x = 0; x < this.board.columns - 3; x++ ){
+        for (let y = 0; y < this.board.rows; y++){
+            if (this.board.spaces[x][y].owner === owner && 
+                this.board.spaces[x+1][y].owner === owner && 
+                this.board.spaces[x+2][y].owner === owner && 
+                this.board.spaces[x+3][y].owner === owner) {
+                    win = true;
+            }           
+        }
+    }
+
+    // diagonal
+    for (let x = 3; x < this.board.columns; x++ ){
+        for (let y = 0; y < this.board.rows - 3; y++){
+            if (this.board.spaces[x][y].owner === owner && 
+                this.board.spaces[x-1][y+1].owner === owner && 
+                this.board.spaces[x-2][y+2].owner === owner && 
+                this.board.spaces[x-3][y+3].owner === owner) {
+                    win = true;
+            }           
+        }
+    }
+
+    // diagonal
+    for (let x = 3; x < this.board.columns; x++ ){
+        for (let y = 3; y < this.board.rows; y++){
+            if (this.board.spaces[x][y].owner === owner && 
+                this.board.spaces[x-1][y-1].owner === owner && 
+                this.board.spaces[x-2][y-2].owner === owner && 
+                this.board.spaces[x-3][y-3].owner === owner) {
+                    win = true;
+            }           
+        }
+    }
+
+    return win;
+}
+
+/*   checkForWin(spaces, targetSpace, activeToken, activePlayer){
     
     // flatten 2D array spaces into a 1D array of all spaces:
     const arrayOfAllSpaces = spaces.reduce((accArray, column) => {
@@ -109,41 +165,6 @@ class Game {
     // check for horizontal left victory:
     incrementor = 1; // reset incrementor
 
-
-
-
-
-    /* const verticaldown = [];
-    const horizLeft = [];
-    const horizRight = [];
-    const diagUpLeft = [];
-    const diagUpRight = [];
-    const diagDownLeft = [];
-    const diagDownRight = [];
-
-
-    for (let column of spaces) {
-      for (let space of column) {
-
-      }
-    } */
-    // check vertical (would have to be going downwards from target space, so Y + 1)
-   /*  if ( &&  &&  && ) */
-      // activeToken.columnLocation
-      // const targetColumn = spaces[activeToken.columnLocation]
-      // targetColumn.indexOf(targetSpace)
-    // space.owner (call the get owner method on Space)
-
-    // each space has an x and y property that corresponds to its position in the grid
-    // from each targetSpace, need to identify the rows of four spaces in each direction, and turn each into an array
-        //vertical array
-        /* const vertArray = targetColumn.filter(space => space.y >= targetSpace.y);
-        const horiArray = [];
-        spaces.forEach(column => {
-          const spaceOnSameRow = column.filter(space => space.y === targetSpace.y);
-          horiArray.push(spaceOnSameRow[0]);
-        }); */
-    // then loop over each array checking to see if every owner === targetSpace.owner
-    // 
   }
+ */
 }
