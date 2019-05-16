@@ -57,6 +57,7 @@ class Game {
     // use columnLocation property to return an index value, to identify the relevant column array in spaces 2D array
     const targetColumn = spaces[activeToken.columnLocation];
     let targetSpace = null;
+    const game = this; // for callback function
     
     // loop through targetColumn array checking for a space that haven't been assigned a token
     // if one is found, assign it to targetSpace
@@ -68,8 +69,8 @@ class Game {
     // if there is a targetSpace (i.e. targetColumn is not already full):
     if (targetSpace !== null) {
       this.ready = false;
-      activeToken.drop(targetSpace, function(){
-        // callbback function code here
+      activeToken.drop(targetSpace, function(){ // callback function for drop() method.
+        game.updateGameState(activeToken, targetSpace); 
       });
     } 
   }
