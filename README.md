@@ -7,7 +7,7 @@ A digital Connect4 game, developed using Object-Orientated JavaScript.
 ## Skills/knowledge demonstrated:
 * vanilla JavaScript
 * Modelling real-world objects as JS Classes
-* ES6 Class syntax
+* ES6 Class syntactical sugar
 * Constructor Methods
 * Getter Methods
 * Dynamically instantiating objects
