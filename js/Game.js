@@ -77,5 +77,11 @@ class Game {
     }
   }
 
-
+  /**
+   * checks for win. four tokens owned by same player in a horizontal, vertical or diagonal row.
+   * 
+   */
+  checkForWin(){
+    
+  }
 }
